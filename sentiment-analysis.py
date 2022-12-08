@@ -25,3 +25,9 @@ def sentiment_analysis(tweet):
     encoded_tweet = tokenizer(sanitizer(tweet), return_tensors='pt')
     output = model(**encoded_tweet)
     return output
+
+# Perform scoring
+def scoring(sentiment_tensor):
+    scores = sentiment_tensor[0][0].detach().numpy()
+    scores = softmax(scores)
+    return dict(zip(labels, scores))
