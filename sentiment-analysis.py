@@ -19,3 +19,9 @@ def sanitizer(tweet_text):
     tweet_words = tweet_text.split(' ')
     tweet_words = list(filter(lambda word: drop_handles(word), tweet_words))
     return " ".join(tweet_words)
+
+# Perform sentiment analysis
+def sentiment_analysis(tweet):
+    encoded_tweet = tokenizer(sanitizer(tweet), return_tensors='pt')
+    output = model(**encoded_tweet)
+    return output
