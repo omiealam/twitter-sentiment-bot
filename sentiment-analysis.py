@@ -31,3 +31,7 @@ def scoring(sentiment_tensor):
     scores = sentiment_tensor[0][0].detach().numpy()
     scores = softmax(scores)
     return dict(zip(labels, scores))
+
+# Return main sentiment
+def primary_sentiment(scores):
+    return max(scores, key=scores.get)
