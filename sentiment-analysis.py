@@ -1,5 +1,6 @@
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 from scipy.special import softmax
+import sys
 
 # Load model and tokenizer
 roberta = "cardiffnlp/twitter-roberta-base-sentiment"
@@ -35,3 +36,11 @@ def scoring(sentiment_tensor):
 # Return main sentiment
 def primary_sentiment(scores):
     return max(scores, key=scores.get)
+
+def main():
+    sentiment_scores = scoring(sentiment_analysis(str(sys.argv)))
+    sentiment = primary_sentiment(sentiment_scores)
+    print(f'The sentiment expressed in this tweet is {sentiment}.')
+
+if __name__ == "__main__":
+    main()
