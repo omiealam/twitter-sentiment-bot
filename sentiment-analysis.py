@@ -6,7 +6,7 @@ import sys
 roberta = "cardiffnlp/twitter-roberta-base-sentiment"
 model = AutoModelForSequenceClassification.from_pretrained(roberta)
 tokenizer = AutoTokenizer.from_pretrained(roberta)
-labels = ['Negative', 'Neutral', 'Positive']
+labels = ['negative', 'neutral', 'positive']
 
 # Remove strings that start with @ and are longer than 1 char (likely Twitter handles)
 def drop_handles(word):
